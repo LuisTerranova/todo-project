@@ -9,10 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f36c53d4-4a27-4110-88d2-4611b9fd7321" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Controllers/HomeController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/HomeController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ViewModels/ErrorViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ViewModels/ErrorViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/Shared/Error.cshtml" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Shared/Error.cshtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.TodoApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.TodoApp/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +86,7 @@
       <updated>1746724197973</updated>
       <workItem from="1746724198920" duration="322000" />
       <workItem from="1746742970536" duration="885000" />
-      <workItem from="1746744166376" duration="4498000" />
+      <workItem from="1746744166376" duration="5265000" />
     </task>
     <servers />
   </component>

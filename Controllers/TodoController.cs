@@ -6,7 +6,7 @@ using Todo.ViewModels;
 
 namespace Todo.Controllers;
 
-public class TodoController : ControllerBase
+public class TodoController : Controller
 {
     [HttpPost("v1/todos")]
     public async Task<IActionResult> Post(
@@ -19,7 +19,7 @@ public class TodoController : ControllerBase
         var todo = new TodoModel
         {
             Title = model.Title,
-            Body = model.Description,
+            Body = model.Description
         };
 
         try
@@ -32,6 +32,26 @@ public class TodoController : ControllerBase
         catch (DbUpdateException)
         {
             return StatusCode(400);
+        }
+    }
+
+    [HttpGet("v1/todos/{id}")]
+    public async Task<IActionResult> Get(
+        [FromServices] TodoDataContext context,
+        [FromRoute] int id)
+    {
+        if (!ModelState.IsValid)
+            return await Task.FromResult(BadRequest());
+
+        try
+        {
+            var todo = await context.Todos.AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Id == id);
+            return Ok(todo);
+        }
+        catch
+        {
+            return NotFound();
         }
     }
 
