@@ -6,12 +6,19 @@ using Todo.ViewModels;
 
 namespace Todo.Controllers;
 
-public class TodoController : Controller
+public class TodoController(TodoDataContext _context) : Controller
 {
-    [HttpPost("v1/todos")]
-    public async Task<IActionResult> Post(
-        [FromBody] TodoViewModel model,
-        [FromServices] TodoDataContext context)
+    private readonly TodoDataContext context = _context;
+
+    [HttpGet]
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(
+        TodoViewModel model)
     {
         if (!ModelState.IsValid)
             return await Task.FromResult(BadRequest());
@@ -27,33 +34,45 @@ public class TodoController : Controller
             await context.Todos.AddAsync(todo);
             await context.SaveChangesAsync();
 
-            return Ok();
+            TempData["SuccessMessage"] = "Your task was succesfully created.";
+            return RedirectToAction("Create");
         }
-        catch (DbUpdateException)
+        catch (Exception ex)
         {
-            return StatusCode(400);
+            ModelState.AddModelError(string.Empty, "An error occurred while processing your request.");
+            return View(model);
         }
     }
 
-    [HttpGet("v1/todos/{id}")]
-    public async Task<IActionResult> Get(
-        [FromServices] TodoDataContext context,
-        [FromRoute] int id)
+    [HttpGet]
+    public async Task<IActionResult> ShowAll(TodoModel model)
     {
-        if (!ModelState.IsValid)
-            return await Task.FromResult(BadRequest());
-
         try
         {
-            var todo = await context.Todos.AsNoTracking()
-                .FirstOrDefaultAsync(x => x.Id == id);
-            return Ok(todo);
+            var todo = await context.Todos.AsNoTracking().ToListAsync();
+            
+            if (todo.Count != 0)
+                return View(todo);
+                
+            return (IActionResult)(TempData["Error"] = "Your tasks are empty.");
         }
         catch
         {
-            return NotFound();
+            return StatusCode(500, "Internal server error");
         }
     }
 
+    public async Task<IActionResult> Delete(int id)
+    {
+        var todo = await context.Todos.FirstOrDefaultAsync(x => x.Id == id);
 
+        if (todo != null)
+        {
+            context.Todos.Remove(todo);
+            await context.SaveChangesAsync();
+        }
+
+        TempData["SuccessMessage"] = "Your task was deleted.";
+        return RedirectToAction("ShowAll");
+    }
 }
