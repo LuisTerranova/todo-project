@@ -42,6 +42,24 @@ public class TodoController(TodoDataContext _context) : Controller
         }
     }
 
+    [HttpGet]
+    public async Task<IActionResult> Edit(int id)
+    {
+        var todo = await _context.Todos.FindAsync(id);  
+        if (todo == null)  
+        {  
+            return NotFound();  
+        }  
+  
+        var viewModel = new TodoViewModel  
+        {  
+            Title = todo.Title,  
+            Description = todo.Body  
+        };
+        return View(viewModel);
+    }
+    
+    [HttpPost]
     public async Task<IActionResult> Edit(int id, TodoViewModel model )
     {
         try
@@ -76,8 +94,7 @@ public class TodoController(TodoDataContext _context) : Controller
     {
         try
         {
-            var todo = await context.Todos.AsNoTracking()
-                                                            .ToListAsync();
+            var todo = await context.Todos.ToListAsync();
             
             if (todo.Count == 0) 
                 TempData["Info"] = "No tasks found";
@@ -91,6 +108,7 @@ public class TodoController(TodoDataContext _context) : Controller
         }
     }
 
+    [HttpDelete]
     public async Task<IActionResult> Delete(int id)
     {
         try
