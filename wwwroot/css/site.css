@@ -29,3 +29,25 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+.form-check-input {
+  width: 1.5em;
+  height: 1.5em;
+  border: 2px solid #4CAF50;
+  background-color: #fff;
+  margin-top: 0.2em;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  box-shadow: 0 0 0 0.1rem rgba(76, 175, 80, 0.25);
+}
+
+.form-check-input:checked {
+  background-color: #4CAF50;
+  border-color: #388E3C;
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.35);
+}
+
+.form-check-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(76, 175, 80, 0.5);
+}

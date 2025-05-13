@@ -16,16 +16,30 @@
 
 @foreach (var item in Model)
 {
-    <div class="card mb-2 p-3">
-        <h5>@item.Title</h5>
-        <p>@item.Body</p>
-            <!-- Delete Button -->
+    <div class="card mb-2 p-3 @(item.IsCompleted ? "bg-light" : "")">
+        <div class="d-flex justify-content-between align-items-start">
+            <h5 class="@(item.IsCompleted ? "text-muted text-decoration-line-through" : "")">@item.Title</h5>
+            <div class="form-check">
+                <form asp-action="ToggleCompletion" method="post" asp-route-id="@item.Id" class="d-inline">
+                    @Html.AntiForgeryToken()
+                    <input type="checkbox"
+                           class="form-check-input"
+                           onchange="this.form.submit()"
+                           @(item.IsCompleted ? "checked" : "")>
+                </form>
+            </div>
+        </div>
+
+        <p class="@(item.IsCompleted ? "text-muted text-decoration-line-through" : "")">@item.Body</p>
+
+        <!-- Action Buttons -->
+        <div class="mt-2">
             <form asp-action="Delete" method="post" asp-route-id="@item.Id" class="d-inline"
                   onsubmit="return confirm('Are you sure you want to delete this task?');">
                 @Html.AntiForgeryToken()
                 <button type="submit" class="btn btn-danger btn-sm">❌ Delete</button>
                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">✏️ Edit</a>
             </form>
-        
         </div>
+    </div>
 }

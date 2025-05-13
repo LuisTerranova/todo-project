@@ -151,7 +151,6 @@ C:\tempPush\Todo\obj\Debug\net9.0\Todo.sourcelink.json
 C:\tempPush\Todo\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\tempPush\Todo\obj\Debug\net9.0\scopedcss\bundle\Todo.styles.css
 C:\tempPush\Todo\obj\Debug\net9.0\scopedcss\projectbundle\Todo.bundle.scp.css
-C:\tempPush\Todo\obj\Debug\net9.0\compressed\ep4rr7mo0i-b9sayid5wm.gz
 C:\tempPush\Todo\obj\Debug\net9.0\compressed\fc7h4jd2t2-61n19gt1b8.gz
 C:\tempPush\Todo\obj\Debug\net9.0\compressed\nsc2yllrpk-xtxxf3hu2r.gz
 C:\tempPush\Todo\obj\Debug\net9.0\compressed\9vreofb19j-t1cqhe9u97.gz
@@ -230,3 +229,4 @@ C:\tempPush\Todo\obj\Debug\net9.0\refint\Todo.dll
 C:\tempPush\Todo\obj\Debug\net9.0\Todo.pdb
 C:\tempPush\Todo\obj\Debug\net9.0\Todo.genruntimeconfig.cache
 C:\tempPush\Todo\obj\Debug\net9.0\ref\Todo.dll
+C:\tempPush\Todo\obj\Debug\net9.0\compressed\ep4rr7mo0i-2l4dm1pcr0.gz

@@ -133,4 +133,14 @@ public class TodoController(TodoDataContext _context) : Controller
         TempData["SuccessMessage"] = "Your task was deleted.";
         return RedirectToAction("ShowAll");
     }
+
+    [HttpPost]
+    public async Task<IActionResult> ToggleCompletion(int id)
+    {
+            var todo = await context.Todos.FindAsync(id);
+
+            todo.IsCompleted = !todo.IsCompleted;
+            await context.SaveChangesAsync();
+            return RedirectToAction("ShowAll");
+    }
 }
