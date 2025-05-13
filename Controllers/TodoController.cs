@@ -1,3 +1,4 @@
+using System.Transactions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todo.Data;
@@ -23,11 +24,8 @@ public class TodoController(TodoDataContext _context) : Controller
         if (!ModelState.IsValid)
             return await Task.FromResult(BadRequest());
 
-        var todo = new TodoModel
-        {
-            Title = model.Title,
-            Body = model.Description
-        };
+        var todo = new TodoModel(model.Title, model.Description);
+        
 
         try
         {
@@ -44,32 +42,74 @@ public class TodoController(TodoDataContext _context) : Controller
         }
     }
 
+    public async Task<IActionResult> Edit(int id, TodoViewModel model )
+    {
+        try
+        {
+            var todo = await context.Todos.FindAsync(id);
+
+            if (todo == null)
+            {
+                TempData["Info"] = "No task found.";
+                return RedirectToAction("ShowAll");
+            }
+
+
+            todo.Title = model.Title;
+            todo.Body = model.Description;
+
+            context.Update(todo);
+            await context.SaveChangesAsync();
+            
+            TempData["SuccessMessage"] = "Your task was succesfully updated.";
+            return RedirectToAction("ShowAll");
+        }
+        catch
+        {
+            TempData["Info"] = "Something went wrong.";
+            return RedirectToAction("ShowAll");
+        }
+    }
+
     [HttpGet]
     public async Task<IActionResult> ShowAll(TodoModel model)
     {
         try
         {
-            var todo = await context.Todos.AsNoTracking().ToListAsync();
+            var todo = await context.Todos.AsNoTracking()
+                                                            .ToListAsync();
             
-            if (todo.Count != 0)
-                return View(todo);
+            if (todo.Count == 0) 
+                TempData["Info"] = "No tasks found";
                 
-            return (IActionResult)(TempData["Error"] = "Your tasks are empty.");
+            return View(todo);
         }
-        catch
+        catch(Exception ex)
         {
+            TempData["Error"] = "An error occurred while retrieving tasks.";
             return StatusCode(500, "Internal server error");
         }
     }
 
     public async Task<IActionResult> Delete(int id)
     {
-        var todo = await context.Todos.FirstOrDefaultAsync(x => x.Id == id);
-
-        if (todo != null)
+        try
         {
+            var todo = await context.Todos.FindAsync(id);
+
+            if (todo == null)
+            {
+                TempData["Info"] = "No task found";
+                return RedirectToAction("ShowAll");
+            }
+            
             context.Todos.Remove(todo);
             await context.SaveChangesAsync();
+        }
+        catch(Exception ex)
+        {
+            TempData["Error"] = "An error occurred while processing tasks.";
+            return RedirectToAction("ShowAll");
         }
 
         TempData["SuccessMessage"] = "Your task was deleted.";
