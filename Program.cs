@@ -1,13 +1,27 @@
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
+using Todo;
 using Todo.Data;
+using Todo.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-builder.Services.AddControllersWithViews()
-    .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
-builder.Services.AddDbContext<TodoDataContext>();
+ConfigureAuthentication(builder);
+ConfigureServices(builder);
 
 var app = builder.Build();
+LoadConfiguration(app);
+
+app.UseHttpsRedirection();
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+app.MapStaticAssets();
+app.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}")
+    .WithStaticAssets();
+app.Run();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -17,17 +31,34 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseRouting();
+void LoadConfiguration(WebApplication app)
+{
+    Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
+}
 
-app.UseAuthorization();
+void ConfigureAuthentication(WebApplicationBuilder builder)
+    {
+        var key = Encoding.ASCII.GetBytes(Configuration.JwtKey);
+        builder.Services.AddAuthentication(x =>
+        {
+            x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(x =>
+        {
+            x.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false
+            };
+        });
+    }
 
-app.MapStaticAssets();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}")
-    .WithStaticAssets();
-
-
-app.Run();
+void ConfigureServices(WebApplicationBuilder builder)
+{
+    builder.Services.AddControllersWithViews()
+        .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
+    builder.Services.AddDbContext<TodoDataContext>();
+    builder.Services.AddTransient<TokenService>();
+}
