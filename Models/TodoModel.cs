@@ -13,4 +13,7 @@ public class TodoModel
     public string Title { get; set; }
     public string Body { get; set; }
     public bool IsCompleted { get; set; }
+    public DateTime DueDate { get; set; }
+    public int UserId { get; set; }
+    public User User { get; set; }
 }

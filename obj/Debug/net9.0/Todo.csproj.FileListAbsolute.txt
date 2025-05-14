@@ -1,3 +1,12 @@
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.csproj.AssemblyReference.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.GeneratedMSBuildEditorConfig.editorconfig
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.AssemblyInfoInputs.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.AssemblyInfo.cs
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.csproj.CoreCompileInputs.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.MvcApplicationPartsAssemblyInfo.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.RazorAssemblyInfo.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.RazorAssemblyInfo.cs
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.sourcelink.json
 C:\tempPush\Todo\bin\Debug\net9.0\appsettings.Development.json
 C:\tempPush\Todo\bin\Debug\net9.0\appsettings.json
 C:\tempPush\Todo\bin\Debug\net9.0\Todo.staticwebassets.runtime.json
@@ -139,18 +148,10 @@ C:\tempPush\Todo\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.
 C:\tempPush\Todo\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\tempPush\Todo\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\tempPush\Todo\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\tempPush\Todo\obj\Debug\net9.0\Todo.csproj.AssemblyReference.cache
-C:\tempPush\Todo\obj\Debug\net9.0\Todo.GeneratedMSBuildEditorConfig.editorconfig
-C:\tempPush\Todo\obj\Debug\net9.0\Todo.AssemblyInfoInputs.cache
-C:\tempPush\Todo\obj\Debug\net9.0\Todo.AssemblyInfo.cs
-C:\tempPush\Todo\obj\Debug\net9.0\Todo.csproj.CoreCompileInputs.cache
-C:\tempPush\Todo\obj\Debug\net9.0\Todo.MvcApplicationPartsAssemblyInfo.cache
-C:\tempPush\Todo\obj\Debug\net9.0\Todo.RazorAssemblyInfo.cache
-C:\tempPush\Todo\obj\Debug\net9.0\Todo.RazorAssemblyInfo.cs
-C:\tempPush\Todo\obj\Debug\net9.0\Todo.sourcelink.json
 C:\tempPush\Todo\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\tempPush\Todo\obj\Debug\net9.0\scopedcss\bundle\Todo.styles.css
 C:\tempPush\Todo\obj\Debug\net9.0\scopedcss\projectbundle\Todo.bundle.scp.css
+C:\tempPush\Todo\obj\Debug\net9.0\compressed\ep4rr7mo0i-2l4dm1pcr0.gz
 C:\tempPush\Todo\obj\Debug\net9.0\compressed\fc7h4jd2t2-61n19gt1b8.gz
 C:\tempPush\Todo\obj\Debug\net9.0\compressed\nsc2yllrpk-xtxxf3hu2r.gz
 C:\tempPush\Todo\obj\Debug\net9.0\compressed\9vreofb19j-t1cqhe9u97.gz
@@ -229,4 +230,3 @@ C:\tempPush\Todo\obj\Debug\net9.0\refint\Todo.dll
 C:\tempPush\Todo\obj\Debug\net9.0\Todo.pdb
 C:\tempPush\Todo\obj\Debug\net9.0\Todo.genruntimeconfig.cache
 C:\tempPush\Todo\obj\Debug\net9.0\ref\Todo.dll
-C:\tempPush\Todo\obj\Debug\net9.0\compressed\ep4rr7mo0i-2l4dm1pcr0.gz

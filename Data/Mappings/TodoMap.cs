@@ -10,7 +10,7 @@ public class TodoMap : IEntityTypeConfiguration<TodoModel>
 {
     public void Configure(EntityTypeBuilder<TodoModel> builder)
     {
-        builder.ToTable("Todo");
+        builder.ToTable("Todos");
         
         builder.HasKey(x => x.Id);
         
@@ -29,7 +29,11 @@ public class TodoMap : IEntityTypeConfiguration<TodoModel>
         builder.Property(x => x.IsCompleted).HasColumnName("IsCompleted")
             .HasColumnType("bit")
             .HasDefaultValue(false);
-
+        
+        builder.HasOne(x=>x.User)
+            .WithMany(x=>x.Todos)
+            .HasForeignKey(x=>x.UserId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
     
 }

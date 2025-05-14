@@ -7,6 +7,7 @@ namespace Todo.Data;
 public class TodoDataContext : DbContext
 {
     public DbSet<TodoModel> Todos { get; set; }
+    public DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer
         ("Server=localhost,1433;Database=TodoDb;User ID=sa;Password=1q2w3e4r@#$;TrustServerCertificate = true");
@@ -14,5 +15,6 @@ public class TodoDataContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfiguration(new TodoMap());
+        modelBuilder.ApplyConfiguration(new UserMap());
     }
 }
