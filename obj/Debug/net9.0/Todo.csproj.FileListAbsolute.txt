@@ -1,0 +1,9 @@
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.csproj.AssemblyReference.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.GeneratedMSBuildEditorConfig.editorconfig
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.AssemblyInfoInputs.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.AssemblyInfo.cs
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.csproj.CoreCompileInputs.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.MvcApplicationPartsAssemblyInfo.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.RazorAssemblyInfo.cache
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.RazorAssemblyInfo.cs
+C:\tempPush\Todo\obj\Debug\net9.0\Todo.sourcelink.json

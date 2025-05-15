@@ -79,7 +79,7 @@ public class TodoController(TodoDataContext _context) : Controller
             context.Update(todo);
             await context.SaveChangesAsync();
             
-            TempData["SuccessMessage"] = "Your task was succesfully updated.";
+            TempData["SuccessMessage"] = "Your task was successfully updated.";
             return RedirectToAction("ShowAll");
         }
         catch
@@ -90,7 +90,7 @@ public class TodoController(TodoDataContext _context) : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> ShowAll(TodoModel model)
+    public async Task<IActionResult> ShowAll()
     {
         try
         {

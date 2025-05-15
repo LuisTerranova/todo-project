@@ -18,6 +18,27 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="SecureIdentity" Version="1.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Pages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\Account\Register.cshtml" />
   </ItemGroup>
 
 </Project>
