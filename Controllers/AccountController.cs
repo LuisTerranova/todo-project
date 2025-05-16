@@ -112,11 +112,10 @@ public class AccountController(TodoDataContext _context) : Controller
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-        HttpContext.Session.Clear();  
         
         Response.Cookies.Delete(".AspNetCore.Cookies");  
         
-        TempData["SuccessMessage"] = "You have been successfully logged out.";  
+        TempData["SuccessMessage"] = "You have been successfully logged out."; 
         return RedirectToAction("Index", "Home");
     }
 }

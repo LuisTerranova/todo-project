@@ -36,8 +36,8 @@ void ConfigureServices(WebApplicationBuilder builder)
         .AddCookie(options =>
         {
             options.LoginPath = "/Account/Login";
-            //options.LogoutPath = "/Account/Logout";
-            //options.AccessDeniedPath = "/Account/AccessDenied";
+            options.LogoutPath = "/Account/Logout";
+            options.AccessDeniedPath = "/Account/AccessDenied";
             
             options.Cookie.HttpOnly = true;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
