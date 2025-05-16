@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Compile Remove="Pages\**" />
+    <Compile Remove="Services\TokenService.cs" />
   </ItemGroup>
 
   <ItemGroup>

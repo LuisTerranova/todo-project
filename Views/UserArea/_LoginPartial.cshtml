@@ -1,0 +1,42 @@
+@using System.Security.Claims
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+<div class="d-flex">
+   
+    @if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+    {
+        <nav id="sidebar" class="bg-light">
+            <div class="position-sticky">
+                <div class="list-group list-group-flush mt-3">
+                    <a asp-controller="Todo" asp-action="Create" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="bi bi-plus-circle me-2"></i><span>Create Task</span>
+                    </a>
+                    <a method="get" asp-controller="Todo" asp-action="ShowAll" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="bi bi-list-task me-2"></i><span>Show All Tasks</span>
+                    </a>
+                    <a method="post" asp-controller="Account" asp-action="Logout" class="list-group-item list-group-item-action py-2 ripple">
+                        <i class="bi bi-box-arrow-right me-2"></i><span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    }
+    
+    <div class="flex-grow-1">
+        @if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+        {
+            <div class="text-center mt-5">
+                <h2 class="display-5">
+                    Hello, @HttpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Name)!
+                </h2>
+            </div>
+        }
+        else
+        {
+            <div class="text-center mt-5">
+                <p>Please <a asp-controller="Account" asp-action="Login">Log in</a> or <a asp-controller="Account" asp-action="Register">Register</a> to continue.</p>
+            </div>
+        }
+    </div>
+</div>

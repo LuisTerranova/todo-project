@@ -1,13 +1,16 @@
+using Todo.Controllers;
+
 namespace Todo.Models;
 
 public class TodoModel
 {
     public TodoModel() { }  
     
-    public TodoModel(string title, string body)  
+    public TodoModel(string title, string body, int id)  
     {  
         Title = title;  
-        Body = body;  
+        Body = body;
+        UserId = id;
     }
     public int Id { get; set; }
     public string Title { get; set; }

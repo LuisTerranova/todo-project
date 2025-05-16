@@ -1,4 +1,5 @@
-using System.Transactions;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Todo.Data;
@@ -7,33 +8,35 @@ using Todo.ViewModels;
 
 namespace Todo.Controllers;
 
+[Authorize]
 public class TodoController(TodoDataContext _context) : Controller
 {
     private readonly TodoDataContext context = _context;
-
+    
     [HttpGet]
     public IActionResult Create()
     {
         return View();
     }
-
+    
     [HttpPost]
-    public async Task<IActionResult> Create(
-        TodoViewModel model)
+    public async Task<IActionResult> Create(TodoViewModel model)
     {
         if (!ModelState.IsValid)
             return await Task.FromResult(BadRequest());
-
-        var todo = new TodoModel(model.Title, model.Description);
         
-
+        var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        
         try
         {
-            await context.Todos.AddAsync(todo);
-            await context.SaveChangesAsync();
-
-            TempData["SuccessMessage"] = "Your task was succesfully created.";
-            return RedirectToAction("Create");
+            if (int.TryParse(userIdString, out var userId))
+            {
+                var todo = new TodoModel(model.Title, model.Description, userId);
+                await context.Todos.AddAsync(todo);
+                await context.SaveChangesAsync();
+            }
+            TempData["SuccessMessage"] = "Your task was successfully created.";
+            return RedirectToAction("Index","UserArea");
         }
         catch (Exception ex)
         {
@@ -88,18 +91,19 @@ public class TodoController(TodoDataContext _context) : Controller
             return RedirectToAction("ShowAll");
         }
     }
-
+    
     [HttpGet]
     public async Task<IActionResult> ShowAll()
     {
         try
         {
-            var todo = await context.Todos.ToListAsync();
-            
-            if (todo.Count == 0) 
-                TempData["Info"] = "No tasks found";
-                
-            return View(todo);
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier) ?? string.Empty);
+            var todo = await context.Todos.Where(x => x.UserId == userId)
+                .ToListAsync();
+
+            if (todo.Count != 0) return View("ShowAll", todo);
+            TempData["Info"] = "No tasks found, create your first task.";
+            return View("Create");
         }
         catch(Exception ex)
         {
@@ -108,13 +112,21 @@ public class TodoController(TodoDataContext _context) : Controller
         }
     }
 
-    [HttpDelete]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(int id)
     {
         try
         {
-            var todo = await context.Todos.FindAsync(id);
-
+            if (!int.TryParse(User.FindFirstValue(ClaimTypes.NameIdentifier), out var userId))
+            {
+                TempData["Error"] = "Invalid user ID.";  
+                return RedirectToAction("ShowAll");
+            }
+            
+            var todo = await context.Todos.Where(x=>x.UserId == userId)
+                .FirstOrDefaultAsync();
+            
             if (todo == null)
             {
                 TempData["Info"] = "No task found";
@@ -139,7 +151,7 @@ public class TodoController(TodoDataContext _context) : Controller
     {
             var todo = await context.Todos.FindAsync(id);
 
-            todo.IsCompleted = !todo.IsCompleted;
+            if (todo != null) todo.IsCompleted = !todo.IsCompleted;
             await context.SaveChangesAsync();
             return RedirectToAction("ShowAll");
     }

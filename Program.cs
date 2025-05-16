@@ -1,16 +1,11 @@
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
-using Todo;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Todo.Data;
-using Todo.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+
 
 var builder = WebApplication.CreateBuilder(args);
-ConfigureAuthentication(builder);
 ConfigureServices(builder);
 
 var app = builder.Build();
-LoadConfiguration(app);
 
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -31,34 +26,22 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-void LoadConfiguration(WebApplication app)
-{
-    Configuration.JwtKey = app.Configuration.GetValue<string>("JwtKey");
-}
-
-void ConfigureAuthentication(WebApplicationBuilder builder)
-    {
-        var key = Encoding.ASCII.GetBytes(Configuration.JwtKey);
-        builder.Services.AddAuthentication(x =>
-        {
-            x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        }).AddJwtBearer(x =>
-        {
-            x.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateIssuer = false,
-                ValidateAudience = false
-            };
-        });
-    }
-
 void ConfigureServices(WebApplicationBuilder builder)
 {
     builder.Services.AddControllersWithViews()
         .ConfigureApiBehaviorOptions(options => options.SuppressModelStateInvalidFilter = true);
     builder.Services.AddDbContext<TodoDataContext>();
-    builder.Services.AddTransient<TokenService>();
+    builder.Services.AddHttpContextAccessor();
+    builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+        .AddCookie(options =>
+        {
+            options.LoginPath = "/Account/Login";
+            //options.LogoutPath = "/Account/Logout";
+            //options.AccessDeniedPath = "/Account/AccessDenied";
+            
+            options.Cookie.HttpOnly = true;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            options.Cookie.SameSite = SameSiteMode.Lax;
+        });
+    builder.Services.AddAuthorization();
 }
