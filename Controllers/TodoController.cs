@@ -51,13 +51,10 @@ public class TodoController(TodoDataContext context) : Controller
         if (todo == null)  
         {  
             return NotFound();  
-        }  
-  
-        var viewModel = new TodoViewModel  
-        {  
-            Title = todo.Title,  
-            Description = todo.Body  
-        };
+        }
+
+        var viewModel = new TodoViewModel(todo.Title, todo.Body);
+        
         return View(viewModel);
     }
     
