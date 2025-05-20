@@ -8,6 +8,7 @@ using SecureIdentity.Password;
 using Todo.Data;
 using Todo.Models;
 using Todo.ViewModels;
+using Todo.ViewModels.Accounts;
 
 namespace Todo.Controllers;
 
@@ -46,7 +47,7 @@ public class AccountController(TodoDataContext _context) : Controller
         }
 
         TempData["SuccessMessage"] = "Account successfully created";
-        return RedirectToAction(nameof(HomeController.Index), "Home");
+        return RedirectToAction("Index", "Home");
     }
 
     [HttpGet]
@@ -56,6 +57,7 @@ public class AccountController(TodoDataContext _context) : Controller
     }
     
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
         if (!ModelState.IsValid)
@@ -66,13 +68,7 @@ public class AccountController(TodoDataContext _context) : Controller
             var user = await context.Users.AsNoTracking()
                 .FirstOrDefaultAsync(x => x.Email == model.Email);
 
-            if (user == null)
-            {
-                ModelState.AddModelError(string.Empty, "Invalid email or password");
-                return View(model);
-            }
-            
-            if (!PasswordHasher.Verify(user.PasswordHash, model.Password))
+            if (user == null || !PasswordHasher.Verify(user.PasswordHash, model.Password))
             {
                 ModelState.AddModelError(string.Empty, "Invalid email or password");
                 return View(model);
@@ -100,7 +96,7 @@ public class AccountController(TodoDataContext _context) : Controller
 
             return RedirectToAction("Index","UserArea");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             ModelState.AddModelError(string.Empty, "An error occurred while processing your request.");
             return View(model);
@@ -109,6 +105,7 @@ public class AccountController(TodoDataContext _context) : Controller
     }
     
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Todo.ViewModels;
+namespace Todo.ViewModels.Accounts;
 
 public class RegisterViewModel
 {

@@ -1,9 +1,16 @@
-@model Todo.ViewModels.RegisterViewModel  
+@model Todo.ViewModels.Accounts.RegisterViewModel  
   
 @{  
     ViewData["Title"] = "Register";  
 }  
-  
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
 <div class="row justify-content-center">  
     <div class="col-md-6">  
         <div class="card shadow-sm">  

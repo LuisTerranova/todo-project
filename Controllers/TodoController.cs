@@ -9,10 +9,8 @@ using Todo.ViewModels;
 namespace Todo.Controllers;
 
 [Authorize]
-public class TodoController(TodoDataContext _context) : Controller
+public class TodoController(TodoDataContext context) : Controller
 {
-    private readonly TodoDataContext context = _context;
-    
     [HttpGet]
     public IActionResult Create()
     {
@@ -23,7 +21,7 @@ public class TodoController(TodoDataContext _context) : Controller
     public async Task<IActionResult> Create(TodoViewModel model)
     {
         if (!ModelState.IsValid)
-            return await Task.FromResult(BadRequest());
+            return View(model);
         
         var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
         
@@ -38,7 +36,7 @@ public class TodoController(TodoDataContext _context) : Controller
             TempData["SuccessMessage"] = "Your task was successfully created.";
             return RedirectToAction("Index","UserArea");
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             ModelState.AddModelError(string.Empty, "An error occurred while processing your request.");
             return View(model);
@@ -48,7 +46,8 @@ public class TodoController(TodoDataContext _context) : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-        var todo = await _context.Todos.FindAsync(id);  
+        var todo = await context.Todos.FindAsync(id);  
+        
         if (todo == null)  
         {  
             return NotFound();  
@@ -71,11 +70,10 @@ public class TodoController(TodoDataContext _context) : Controller
 
             if (todo == null)
             {
-                TempData["Info"] = "No task found.";
+                TempData["Info"] = "No tasks found.";
                 return RedirectToAction("ShowAll");
             }
-
-
+            
             todo.Title = model.Title;
             todo.Body = model.Description;
 
@@ -87,7 +85,7 @@ public class TodoController(TodoDataContext _context) : Controller
         }
         catch
         {
-            TempData["Info"] = "Something went wrong.";
+            TempData["Info"] = "Something went wrong. Try again later.";
             return RedirectToAction("ShowAll");
         }
     }
@@ -97,15 +95,18 @@ public class TodoController(TodoDataContext _context) : Controller
     {
         try
         {
-            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier) ?? string.Empty);
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier) 
+                                   ?? throw new InvalidOperationException("User may not be properly authenticated."));
             var todo = await context.Todos.Where(x => x.UserId == userId)
                 .ToListAsync();
 
-            if (todo.Count != 0) return View("ShowAll", todo);
+            if (todo.Count != 0) 
+                return View("ShowAll", todo);
+            
             TempData["Info"] = "No tasks found, create your first task.";
             return View("Create");
         }
-        catch(Exception ex)
+        catch(Exception)
         {
             TempData["Error"] = "An error occurred while retrieving tasks.";
             return StatusCode(500, "Internal server error");
