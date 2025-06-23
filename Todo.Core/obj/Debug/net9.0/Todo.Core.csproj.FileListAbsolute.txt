@@ -1,0 +1,11 @@
+/home/luisterranova/dev/temp/Todo/Todo.Core/bin/Debug/net9.0/Todo.Core.deps.json
+/home/luisterranova/dev/temp/Todo/Todo.Core/bin/Debug/net9.0/Todo.Core.dll
+/home/luisterranova/dev/temp/Todo/Todo.Core/bin/Debug/net9.0/Todo.Core.pdb
+/home/luisterranova/dev/temp/Todo/Todo.Core/obj/Debug/net9.0/Todo.Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/luisterranova/dev/temp/Todo/Todo.Core/obj/Debug/net9.0/Todo.Core.AssemblyInfoInputs.cache
+/home/luisterranova/dev/temp/Todo/Todo.Core/obj/Debug/net9.0/Todo.Core.AssemblyInfo.cs
+/home/luisterranova/dev/temp/Todo/Todo.Core/obj/Debug/net9.0/Todo.Core.csproj.CoreCompileInputs.cache
+/home/luisterranova/dev/temp/Todo/Todo.Core/obj/Debug/net9.0/Todo.Core.dll
+/home/luisterranova/dev/temp/Todo/Todo.Core/obj/Debug/net9.0/refint/Todo.Core.dll
+/home/luisterranova/dev/temp/Todo/Todo.Core/obj/Debug/net9.0/Todo.Core.pdb
+/home/luisterranova/dev/temp/Todo/Todo.Core/obj/Debug/net9.0/ref/Todo.Core.dll
