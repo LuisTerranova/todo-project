@@ -25,22 +25,18 @@
   <ItemGroup>
     <Compile Remove="Models\User.cs" />
     <Compile Remove="Models\**" />
-    <Compile Remove="Endpoints\**" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Remove="Models\**" />
-    <EmbeddedResource Remove="Endpoints\**" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Models\**" />
-    <Content Remove="Endpoints\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Models\**" />
-    <None Remove="Endpoints\**" />
   </ItemGroup>
 
 </Project>
