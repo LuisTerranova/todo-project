@@ -11,8 +11,4 @@
     <Compile Remove="Models\User.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Handlers\" />
-  </ItemGroup>
-
 </Project>

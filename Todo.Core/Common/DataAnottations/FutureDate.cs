@@ -4,17 +4,16 @@ namespace Todo.Core.Common;
 
 public class FutureDate : ValidationAttribute
 {
-    protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+    protected override ValidationResult? IsValid(object value, ValidationContext validationContext)
     {
-        if (value == null)
-            return ValidationResult.Success;
-
-        if (value is DateTime dateTime)
+        switch (value)
         {
-            if (dateTime.Date < DateTime.Now.Date)
+            case null:
+                return ValidationResult.Success;
+            case DateTime dateTime when dateTime.Date < DateTime.Now.Date:
                 return new ValidationResult(ErrorMessage ?? "The date must be after the current date");
+            default:
+                return ValidationResult.Success;
         }
-
-        return ValidationResult.Success;
     }
 }

@@ -167,3 +167,4 @@
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.pdb
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.genruntimeconfig.cache
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/ref/Todo.Api.dll
+/home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.sourcelink.json
