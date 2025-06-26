@@ -12,6 +12,7 @@
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.AspNetCore.OpenApi.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.Bcl.AsyncInterfaces.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.Build.Locator.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.dll
@@ -46,9 +47,13 @@
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.OpenApi.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.SqlServer.Server.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Microsoft.Win32.SystemEvents.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Mono.TextTemplating.dll
+/home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
+/home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/System.ClientModel.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/System.CodeDom.dll
 /home/luisterranova/dev/temp/Todo/Todo.Api/bin/Debug/net9.0/System.Composition.AttributedModel.dll
@@ -150,7 +155,9 @@
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.AssemblyInfoInputs.cache
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.AssemblyInfo.cs
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.csproj.CoreCompileInputs.cache
+/home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.MvcApplicationPartsAssemblyInfo.cs
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.MvcApplicationPartsAssemblyInfo.cache
+/home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.sourcelink.json
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/scopedcss/bundle/Todo.Api.styles.css
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/staticwebassets.build.json
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/staticwebassets.development.json
@@ -167,4 +174,3 @@
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.pdb
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.genruntimeconfig.cache
 /home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/ref/Todo.Api.dll
-/home/luisterranova/dev/temp/Todo/Todo.Api/obj/Debug/net9.0/Todo.Api.sourcelink.json
