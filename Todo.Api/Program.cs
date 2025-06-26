@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Todo.Api.Data;
+using Todo.Api.Endpoints;
 using Todo.Api.Handlers;
 using Todo.Core.Handlers;
 
@@ -33,5 +34,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapGet("/", () => "Hello World!");
+app.MapEndpoints();
 
 app.Run();

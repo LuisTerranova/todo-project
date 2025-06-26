@@ -1,3 +1,5 @@
+using System.Formats.Tar;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Todo.Api.Common.Api;
 using Todo.Core.Handlers;
 using Todo.Core.Responses;
@@ -17,6 +19,8 @@ public class CreateChoreEndpoint : IEndpoint
 
     private static async Task<IResult> HandleAsync(IChoreHandler handler, CreateChoreRequest request)
     {
+        request.UserId = "teste@terra.io";
+        
         var result = await handler.CreateAsync(request);
         return result.IsSuccess 
             ? TypedResults.Created($"/{result.Data.Id}", result) //posso utilizar o typed results para nao ter que-> prox 

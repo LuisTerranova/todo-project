@@ -15,6 +15,7 @@ public class ChoreHandler(AppDbContext context) : IChoreHandler
         {
             var chore = new Chore
             {
+                UserId = request.UserId,
                 Title = request.Title,
                 Description = request.Description,
                 DueDate = request.DueDate
