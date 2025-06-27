@@ -11,5 +11,5 @@ public interface IChoreHandler
     Task<Response<Chore?>> GetByIdAsync(GetChoreByIdRequest request);
     Task<Response<Chore?>> UpdateAsync(UpdateChoreRequest request);
     Task<Response<Chore?>> DeleteAsync(DeleteChoreRequest request);
-    Task<PagedResponse<List<Chore>>> GetAllAsync(GetAllChoresRequest request);
+    Task<PagedResponse<List<Chore>?>> GetAllAsync(GetAllChoresRequest request);
 }

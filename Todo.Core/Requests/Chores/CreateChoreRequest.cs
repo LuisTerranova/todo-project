@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations;
-using Todo.Core.Common;
 
 namespace Todo.Core.Requests.Chores;
 
@@ -11,6 +10,5 @@ public class CreateChoreRequest : BaseRequest
     [Required(ErrorMessage = "Description is required")]
     [MaxLength(255, ErrorMessage = "Your chore description can't exceed 255 characters")]
     public string Description { get; set; }
-    [FutureDate]
     public DateTime? DueDate { get; set; }
 }

@@ -10,7 +10,7 @@ public class FutureDate : ValidationAttribute
         {
             case null:
                 return ValidationResult.Success;
-            case DateTime dateTime when dateTime.Date < DateTime.Now.Date:
+            case DateTime dateTime when dateTime.Date < DateTime.Today:
                 return new ValidationResult(ErrorMessage ?? "The date must be after the current date");
             default:
                 return ValidationResult.Success;

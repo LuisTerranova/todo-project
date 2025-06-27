@@ -9,6 +9,15 @@
   <ItemGroup>
     <Compile Remove="Class1.cs" />
     <Compile Remove="Models\User.cs" />
+    <Compile Remove="Common\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Common\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Common\**" />
   </ItemGroup>
 
 </Project>

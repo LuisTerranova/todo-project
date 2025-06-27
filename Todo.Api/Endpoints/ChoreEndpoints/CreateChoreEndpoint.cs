@@ -10,12 +10,11 @@ namespace Todo.Api.Endpoints.ChoreEndpoints;
 
 public class CreateChoreEndpoint : IEndpoint
 {
-    public static void Map(IEndpointRouteBuilder app) 
-        =>app.MapPost("/", HandleAsync)
+    public static void Map(IEndpointRouteBuilder app)
+        => app.MapPost("/", HandleAsync)
             .WithName("Chores : Create")
             .WithSummary("Creates a new chore")
-            .WithOrder(1)
-            .Produces<Response<Chore?>>();
+            .WithOrder(1);
 
     private static async Task<IResult> HandleAsync(IChoreHandler handler, CreateChoreRequest request)
     {
