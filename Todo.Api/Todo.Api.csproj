@@ -22,21 +22,4 @@
     <ProjectReference Include="..\Todo.Core\Todo.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Compile Remove="Models\User.cs" />
-    <Compile Remove="Models\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Remove="Models\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Models\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="Models\**" />
-  </ItemGroup>
-
 </Project>

@@ -9,7 +9,7 @@ public class GetChoreByIdEndpoint : IEndpoint
     public static void Map(IEndpointRouteBuilder app)
         => app.MapGet("/{id}", HandleAsync)
             .WithName("Chores : Get By Id")
-            .WithSummary("Returns a chore by its id")
+            .WithSummary("Returns a chore")
             .WithOrder(2);
 
     private static async Task<IResult> HandleAsync(IChoreHandler handler, long id)

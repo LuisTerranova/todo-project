@@ -94,7 +94,7 @@ public class ChoreHandler(AppDbContext context) : IChoreHandler
         }
     }
 
-    public async Task<PagedResponse<List<Chore>>> GetAllAsync(GetAllChoresRequest request)
+    public async Task<PagedResponse<List<Chore>?>> GetAllAsync(GetAllChoresRequest request)
     {
         try
         {
@@ -109,11 +109,11 @@ public class ChoreHandler(AppDbContext context) : IChoreHandler
 
             var count = await query.CountAsync();
 
-            return new PagedResponse<List<Chore>>(chores, count, request.PageNumber, request.PageSize);
+            return new PagedResponse<List<Chore>?>(chores, count, request.PageNumber, request.PageSize);
         }
         catch 
         {
-            return new PagedResponse<List<Chore>>(null, 0, request.PageNumber, request.PageSize);
+            return new PagedResponse<List<Chore>?>(null, 0, request.PageNumber, request.PageSize);
         }
     }
 }

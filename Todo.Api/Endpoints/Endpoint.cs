@@ -13,7 +13,9 @@ public static class Endpoint
             .WithTags("Chores")
             .MapEndpoint<CreateChoreEndpoint>()
             .MapEndpoint<GetChoreByIdEndpoint>()
-            .MapEndpoint<UpdateChoreEndpoint>();
+            .MapEndpoint<UpdateChoreEndpoint>()
+            .MapEndpoint<GetAllChoresEndpoint>()
+            .MapEndpoint<DeleteChoreEndpoint>();
     }
     
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)
