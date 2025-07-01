@@ -9,6 +9,7 @@ public class GetAllChoresEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
         => app.MapGet("/", HandleAsync)
+            .RequireAuthorization()
             .WithName("Chores : Get All Chores")
             .WithSummary("Returns a list of all chores")
             .WithOrder(4);

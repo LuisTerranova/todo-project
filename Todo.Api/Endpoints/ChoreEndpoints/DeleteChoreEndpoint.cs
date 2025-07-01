@@ -8,6 +8,7 @@ public class DeleteChoreEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
         => app.MapDelete("/{id}", HandleAsync)
+            .RequireAuthorization()
             .WithName("Chores : Delete Chore")
             .WithSummary("Deletes a chore")
             .WithOrder(5);

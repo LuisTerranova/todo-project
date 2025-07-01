@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Todo.Api.Common.Api;
 using Todo.Core.Handlers;
 using Todo.Core.Requests.Chores;
@@ -8,13 +9,14 @@ public class UpdateChoreEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
         => app.MapPut("/{id}", HandleAsync)
+            .RequireAuthorization()
             .WithName("Chores : Update")
             .WithSummary("Updates a existing chore")
             .WithOrder(3);
 
-    private static async Task<IResult> HandleAsync(IChoreHandler handler, UpdateChoreRequest request, long id)
+    private static async Task<IResult> HandleAsync(ClaimsPrincipal user, IChoreHandler handler, UpdateChoreRequest request, long id)
     {
-        request.UserId = "teste@terra.io";
+        request.UserId = user.Identity?.Name ?? string.Empty;
         request.Id = id;
             
         var result = await handler.UpdateAsync(request);

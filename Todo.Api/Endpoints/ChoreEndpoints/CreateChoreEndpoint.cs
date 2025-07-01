@@ -1,9 +1,5 @@
-using System.Formats.Tar;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Todo.Api.Common.Api;
 using Todo.Core.Handlers;
-using Todo.Core.Responses;
-using Todo.Core.Models;
 using Todo.Core.Requests.Chores;
 
 namespace Todo.Api.Endpoints.ChoreEndpoints;
@@ -12,6 +8,7 @@ public class CreateChoreEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
         => app.MapPost("/", HandleAsync)
+            .RequireAuthorization()
             .WithName("Chores : Create")
             .WithSummary("Creates a new chore")
             .WithOrder(1);

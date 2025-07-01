@@ -8,6 +8,7 @@ public class GetChoreByIdEndpoint : IEndpoint
 {
     public static void Map(IEndpointRouteBuilder app)
         => app.MapGet("/{id}", HandleAsync)
+            .RequireAuthorization()
             .WithName("Chores : Get By Id")
             .WithSummary("Returns a chore")
             .WithOrder(2);
