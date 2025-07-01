@@ -22,4 +22,9 @@
     <ProjectReference Include="..\Todo.Core\Todo.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="Data\Migrations\" />
+  </ItemGroup>
+
 </Project>

@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Todo.Api.Common.Api;
 using Todo.Core.Handlers;
 using Todo.Core.Requests.Chores;
@@ -13,9 +14,9 @@ public class CreateChoreEndpoint : IEndpoint
             .WithSummary("Creates a new chore")
             .WithOrder(1);
 
-    private static async Task<IResult> HandleAsync(IChoreHandler handler, CreateChoreRequest request)
+    private static async Task<IResult> HandleAsync(ClaimsPrincipal user, IChoreHandler handler, CreateChoreRequest request)
     {
-        request.UserId = "teste@terra.io";
+        request.UserId = user.Identity?.Name ?? string.Empty;
         
         var result = await handler.CreateAsync(request);
         return result.IsSuccess 

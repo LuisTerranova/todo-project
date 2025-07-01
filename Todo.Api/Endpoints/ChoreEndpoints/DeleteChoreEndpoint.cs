@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Todo.Api.Common.Api;
 using Todo.Core.Handlers;
 using Todo.Core.Requests.Chores;
@@ -13,11 +14,11 @@ public class DeleteChoreEndpoint : IEndpoint
             .WithSummary("Deletes a chore")
             .WithOrder(5);
 
-    private static async Task<IResult> HandleAsync(IChoreHandler handler, long id)
+    private static async Task<IResult> HandleAsync(ClaimsPrincipal user, IChoreHandler handler, long id)
     {
         var request = new DeleteChoreRequest
         {
-            UserId = "teste@terra.io",
+            UserId = user.Identity?.Name ?? string.Empty,
             Id = id
         };
         var result = await handler.DeleteAsync(request);

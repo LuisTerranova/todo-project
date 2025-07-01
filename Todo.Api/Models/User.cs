@@ -4,5 +4,5 @@ namespace Todo.Api.Models;
 
 public class User : IdentityUser<long>
 {
-    public DateTime RegisterDate { get; set; }
+    public DateTime RegisterDate { get; set; } = DateTime.Now;
 }

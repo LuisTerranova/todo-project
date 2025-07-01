@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Todo.Api.Common.Api;
 using Todo.Core;
 using Todo.Core.Handlers;
@@ -14,13 +15,13 @@ public class GetAllChoresEndpoint : IEndpoint
             .WithSummary("Returns a list of all chores")
             .WithOrder(4);
 
-    private static async Task<IResult> HandleAsync(IChoreHandler handler,
+    private static async Task<IResult> HandleAsync(ClaimsPrincipal user, IChoreHandler handler,
         int pageNumber = Configuration.DefaultPageNumber,
         int pageSize = Configuration.DefaultPageSize)
     {
         var request = new GetAllChoresRequest
         {
-            UserId = "teste@terra.io",
+            UserId = user.Identity?.Name ?? string.Empty,
             PageNumber = pageNumber,
             PageSize = pageSize
         };

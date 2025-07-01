@@ -1,5 +1,6 @@
 using Todo.Api.Common.Api;
 using Todo.Api.Endpoints.ChoreEndpoints;
+using Todo.Api.Models;
 
 namespace Todo.Api.Endpoints;
 
@@ -16,6 +17,8 @@ public static class Endpoint
             .MapEndpoint<UpdateChoreEndpoint>()
             .MapEndpoint<GetAllChoresEndpoint>()
             .MapEndpoint<DeleteChoreEndpoint>();
+
+        endpoints.MapGroup("v1/identity").MapIdentityApi<User>();
     }
     
     private static IEndpointRouteBuilder MapEndpoint<TEndpoint>(this IEndpointRouteBuilder app)
