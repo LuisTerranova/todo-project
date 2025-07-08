@@ -7,7 +7,11 @@ using Todo.Core.Requests.Chores;
 using Todo.Core.Responses;
 
 namespace Todo.Api.Handlers;
-
+/*Creation of handler to develop Chore CRUD operations.
+ Inheriting interface containing the desired methods.
+ Usage of EF Core to manipulate database.
+ Basic error handling with response class.
+*/
 public class ChoreHandler(AppDbContext context) : IChoreHandler
 {
     public async Task<Response<Chore?>> CreateAsync(CreateChoreRequest request)

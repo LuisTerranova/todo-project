@@ -6,7 +6,7 @@ namespace Todo.Core.Handlers;
 
 public interface IChoreHandler
 {
-    //the CRUD operations are set here to abstract only what the API needs to configure
+    //the CRUD operations set here to abstract only what the API needs to configure
     Task<Response<Chore?>> CreateAsync(CreateChoreRequest request);
     Task<Response<Chore?>> GetByIdAsync(GetChoreByIdRequest request);
     Task<Response<Chore?>> UpdateAsync(UpdateChoreRequest request);

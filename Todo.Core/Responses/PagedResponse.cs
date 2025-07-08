@@ -1,9 +1,11 @@
 using System.Text.Json.Serialization;
 
 namespace Todo.Core.Responses;
-
-public class PagedResponse<TData> : Response<TData>
+//Creation of a PagedResponse to handle pagination easily
+public class PagedResponse<TData> : Response<TData> //Inheriting from Response
 {
+    /*JSON constructor annotation explicitly put on the paginated constructor
+    that will send out data*/
     [JsonConstructor]
     public PagedResponse(
         TData data, 
@@ -16,7 +18,7 @@ public class PagedResponse<TData> : Response<TData>
         CurrentPage = currentPage;
         PageSize = pageSize;
     }
-
+    //Constructor for data manipulation inside API
     public PagedResponse(
         TData data,
         string? message,

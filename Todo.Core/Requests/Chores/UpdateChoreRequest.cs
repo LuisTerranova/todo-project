@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Todo.Core.Requests.Chores;
-
+//Update chore request with data annotations to facilitate form handling
 public class UpdateChoreRequest : BaseRequest
 {
     public long Id { get; set; }

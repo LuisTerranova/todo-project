@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
 namespace Todo.Core.Requests.Chores;
-
+//Create chore request with data annotations to facilitate form handling
 public class CreateChoreRequest : BaseRequest
 {
     [Required(ErrorMessage = "Title is required")]

@@ -1,5 +1,5 @@
 namespace Todo.Core.Models;
-
+//Chore class, the core class of the app
 public class Chore
 {
     public long Id { get; set; }
